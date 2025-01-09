@@ -10,7 +10,6 @@ var flip_clock := 1.0
 
 func _ready():
 	# change starting direction
-	randomize()
 	if randf() > 0.5:
 		flip()
 
