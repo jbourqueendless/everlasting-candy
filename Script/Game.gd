@@ -57,21 +57,24 @@ func MapStart():
 		match id:
 			TILE_WALL:
 				print(pos, ": Wall")
+				# Use random wall tile from 3×3 tileset to make levels look less repetitive
 				var atlas = Vector2(randi_range(0, 2), randi_range(0, 2))
 				NodeTileMap.set_cell(0, pos, TILE_WALL, atlas)
 			TILE_PLAYER:
 				print(pos, ": Player")
+				# Add live player to the scene
 				var inst = ScenePlayer.instantiate()
 				inst.position = NodeTileMap.map_to_local(pos) + Vector2(4, 0)
 				self.add_child(inst)
-				# remove tile from map
+				# Remove static player tile from the tile map
 				NodeTileMap.set_cell(0, pos, -1)
 			TILE_GOOBER:
 				print(pos, ": Goober")
+				# Add live goober to the scene
 				var inst = SceneGoober.instantiate()
 				inst.position = NodeTileMap.map_to_local(pos) + Vector2(4, 1)
 				NodeGoobers.add_child(inst)
-				# remove tile from map
+				# Remove static goober tile from the tile map
 				NodeTileMap.set_cell(0, pos, -1)
 	print("--- MapStart: End ---")
 
