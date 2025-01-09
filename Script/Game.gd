@@ -2,7 +2,7 @@ extends Node2D
 
 var tmpath := "res://TileMap/"
 enum {TILE_WALL = 0, TILE_PLAYER = 1, TILE_GOOBER = 2}
-var NodeTileMap
+var NodeTileMap: TileMap
 
 var ScenePlayer = load("res://Scene/Player.tscn")
 var SceneGoober = load("res://Scene/Goober.tscn")
