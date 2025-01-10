@@ -47,18 +47,14 @@ func MapLoad():
 	Map = tm
 
 func MapStart():
-	print("--- MapStart: Begin ---")
-	print("global.level: ", global.level)
 	for pos in Map.get_used_cells():
 		var id = Map.get_cell_source_id(pos)
 		match id:
 			TILE_WALL:
-				print(pos, ": Wall")
 				# Use random wall tile from 3×3 tileset to make levels look less repetitive
 				var atlas = Vector2(randi_range(0, 2), randi_range(0, 2))
 				Map.set_cell(pos, TILE_WALL, atlas)
 			TILE_PLAYER:
-				print(pos, ": Player")
 				# Add live player to the scene
 				var inst = ScenePlayer.instantiate()
 				inst.position = Map.map_to_local(pos) + Vector2(4, 0)
@@ -66,14 +62,12 @@ func MapStart():
 				# Remove static player tile from the tile map
 				Map.set_cell(pos, -1)
 			TILE_GOOBER:
-				print(pos, ": Goober")
 				# Add live goober to the scene
 				var inst = SceneGoober.instantiate()
 				inst.position = Map.map_to_local(pos) + Vector2(4, 1)
 				NodeGoobers.add_child(inst)
 				# Remove static goober tile from the tile map
 				Map.set_cell(pos, -1)
-	print("--- MapStart: End ---")
 
 func MapChange(delta):
 	# if its time to change scene
