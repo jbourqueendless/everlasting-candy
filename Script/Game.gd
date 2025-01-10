@@ -1,6 +1,5 @@
 extends Node2D
 
-var tmpath := "res://TileMap/"
 enum {TILE_WALL = 0, TILE_PLAYER = 1, TILE_GOOBER = 2}
 var Map: TileMapLayer
 
@@ -43,9 +42,7 @@ func _process(delta):
 	MapChange(delta)
 
 func MapLoad():
-	var nxtlvl = min(global.level, global.lastLevel)
-	var tm = load(tmpath + str(nxtlvl) + ".tscn").instantiate()
-	tm.name = "TileMapLayer"
+	var tm = global.instantiate_level()
 	add_child(tm)
 	Map = tm
 
