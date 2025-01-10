@@ -21,17 +21,17 @@ func _physics_process(delta):
 	vel.y = clamp(vel.y, -termVel, termVel)
 	
 	# horizontal input
-	var btnx = btn.d("right") - btn.d("left")
+	var btnx = Input.get_axis("left", "right")
 	vel.x = btnx * spd
 	
 	# jump
 	if onFloor:
-		if btn.p("jump"):
+		if Input.is_action_just_pressed("jump"):
 			jump = true
 			vel.y = -jumpSpd
 			NodeAudio.play()
 	elif jump:
-		if !btn.d("jump") and vel.y < jumpSpd / -3:
+		if not Input.is_action_pressed("jump") and vel.y < jumpSpd / -3:
 			jump = false
 			vel.y = jumpSpd / -3
 	
@@ -79,7 +79,7 @@ func Overlap():
 				Die()
 			else:
 				hit = true
-				jump = btn.d("jump")
+				jump = Input.is_action_pressed("jump")
 				vel.y = -jumpSpd * (1.0 if jump else 0.6)
 				
 				par.queue_free()

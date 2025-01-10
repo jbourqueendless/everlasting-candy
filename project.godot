@@ -18,7 +18,6 @@ config/icon="res://Image/picon.svg"
 
 [autoload]
 
-btn="*res://Script/btn.gd"
 global="*res://Script/Global.gd"
 
 [display]
