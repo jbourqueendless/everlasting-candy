@@ -19,7 +19,6 @@ func _ready():
 	audio = AudioStreamPlayer.new()
 	add_child(audio)
 	audio.stream = OST
-	audio.play()
 	audio.finished.connect(audio.play)
 
 func _input(event):
@@ -56,6 +55,12 @@ func load_levels(tilemap_dir: String):
 
 func instantiate_level() -> Node:
 	return _levels[level].instantiate()
+
+func start_music():
+	audio.play()
+
+func stop_music():
+	audio.stop()
 
 func wrapp(pos := Vector2.ZERO):
 	return Vector2(wrapf(pos.x, 0.0, 144.0), wrapf(pos.y, 0.0, 144.0))

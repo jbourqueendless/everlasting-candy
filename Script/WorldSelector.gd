@@ -38,7 +38,9 @@ func _ready() -> void:
 
 func _on_world_button_pressed(world: String) -> void:
 	global.load_levels(world)
+	global.level = global.firstLevel
 	get_tree().change_scene_to_packed(_game)
+	global.start_music()
 
 
 func _on_extra_worlds_button_pressed() -> void:

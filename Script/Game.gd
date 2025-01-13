@@ -41,6 +41,11 @@ func _process(delta):
 	
 	MapChange(delta)
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):
+		global.stop_music()
+		get_tree().change_scene_to_file("res://Scene/WorldSelector.tscn")
+
 func MapLoad():
 	var tm = global.instantiate_level()
 	add_child(tm)
@@ -76,7 +81,7 @@ func MapChange(delta):
 		if delay < 0:
 			DoChange()
 		return # skip the rest if change == true
-	
+
 	# should i check?
 	if check:
 		check = false
