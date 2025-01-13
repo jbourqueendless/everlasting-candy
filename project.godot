@@ -10,8 +10,9 @@ config_version=5
 
 [application]
 
-config/name="Candy Wrapper"
-config/description="by Harmony Honey"
+config/name="Everlasting Candy"
+config/description="by Harmony Honey
+and Endless Foundation"
 run/main_scene="res://Scene/Game.tscn"
 config/features=PackedStringArray("4.3")
 config/icon="res://Image/picon.svg"
