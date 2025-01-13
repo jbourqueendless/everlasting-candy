@@ -9,7 +9,7 @@ var active := []
 var idle := []
 
 func _ready():
-	delay = lerp(3.0, 0.333, (global.level - global.firstLevel) / (global.lastLevel - global.firstLevel))
+	delay = lerp(3.0, 0.333, float(global.level - global.firstLevel) / (global.lastLevel - global.firstLevel))
 	if global.level == global.lastLevel:
 		delay = 0.15
 
