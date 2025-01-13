@@ -36,7 +36,7 @@ func _ready():
 func _process(delta):
 	clock += delta
 	# title screen is the first level, and "game complete" screen is the last level:
-	if btn.p("jump") and (global.level == global.firstLevel or (global.level == global.lastLevel  and clock > 0.5)):
+	if Input.is_action_just_pressed("jump") and (global.level == global.firstLevel or (global.level == global.lastLevel  and clock > 0.5)):
 		global.level = posmod(global.level + 1, global.lastLevel + 1)
 		DoChange()
 	
