@@ -48,4 +48,10 @@ func _on_extra_worlds_button_pressed() -> void:
 
 func _on_back_button_pressed() -> void:
 	ExtraWorldsBox.hide()
-	CandyWrapperButton.grab_focus()
+	CandyWrapperButton.grab_focus.call_deferred()
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):
+		if ExtraWorldsBox.visible:
+			_on_back_button_pressed()
