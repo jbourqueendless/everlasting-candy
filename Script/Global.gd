@@ -1,6 +1,6 @@
 extends Node2D
 
-const DEFAULT_WORLD := "res://TileMap/"
+const DEFAULT_WORLD := "res://CandyWrapper/"
 
 var _levels: Array[PackedScene]
 var level := 0

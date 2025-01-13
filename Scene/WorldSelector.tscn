@@ -1,0 +1,76 @@
+[gd_scene load_steps=6 format=3 uid="uid://h6eyk0hg1y1f"]
+
+[ext_resource type="FontFile" uid="uid://d3xp4agbq2lok" path="res://Font/m3x6.ttf" id="1_pma82"]
+[ext_resource type="Script" path="res://Script/WorldSelector.gd" id="2_c1jjg"]
+[ext_resource type="FontFile" uid="uid://2q38bblqh3yd" path="res://Font/Border_Basic.ttf" id="3_odaha"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_poevj"]
+
+[sub_resource type="Theme" id="Theme_tlc0c"]
+default_font = ExtResource("1_pma82")
+CheckButton/colors/font_color = Color(0.454902, 0.192157, 0, 1)
+CheckButton/colors/font_focus_color = Color(0.996078, 0.615686, 0.0862745, 1)
+CheckButton/colors/font_hover_color = Color(0.996078, 0.615686, 0.0862745, 1)
+CheckButton/colors/font_hover_pressed_color = Color(0.996078, 0.615686, 0.0862745, 1)
+CheckButton/colors/font_pressed_color = Color(0.454902, 0.192157, 0, 1)
+HeaderLarge/constants/line_spacing = -14
+HeaderLarge/font_sizes/font_size = 16
+HeaderLarge/fonts/font = ExtResource("3_odaha")
+Label/colors/font_color = Color(0.996078, 0.615686, 0.0862745, 1)
+TabContainer/styles/panel = SubResource("StyleBoxEmpty_poevj")
+
+[node name="TitleScreen" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_tlc0c")
+script = ExtResource("2_c1jjg")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+text = "Everlasting
+Candy"
+horizontal_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+
+[node name="TabContainer" type="TabContainer" parent="MarginContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+current_tab = 0
+tabs_visible = false
+
+[node name="MainWorldBox" type="VBoxContainer" parent="MarginContainer2/TabContainer"]
+layout_mode = 2
+alignment = 1
+metadata/_tab_index = 0
+
+[node name="CandyWrapperButton" type="Button" parent="MarginContainer2/TabContainer/MainWorldBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Play Candy Wrapper"
+
+[node name="ExtraWorldsButton" type="Button" parent="MarginContainer2/TabContainer/MainWorldBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Extra Worlds"
+
+[node name="ExtraWorldsBox" type="VBoxContainer" parent="MarginContainer2/TabContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="BackButton" type="Button" parent="MarginContainer2/TabContainer/ExtraWorldsBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Go Back"
+
+[connection signal="pressed" from="MarginContainer2/TabContainer/MainWorldBox/ExtraWorldsButton" to="." method="_on_extra_worlds_button_pressed"]
+[connection signal="pressed" from="MarginContainer2/TabContainer/ExtraWorldsBox/BackButton" to="." method="_on_back_button_pressed"]
