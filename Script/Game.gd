@@ -19,7 +19,7 @@ var change := false
 
 func _ready():
 	global.Game = self
-	
+
 	if global.level == global.firstLevel or global.level == global.lastLevel:
 		NodeSprite.frame = 0 if global.level == global.firstLevel else 3
 		NodeSprite.visible = true
@@ -28,7 +28,7 @@ func _ready():
 		p.scale.x = -1 if randf() < 0.5 else 1
 		p.set_script(null)
 		add_child(p)
-	
+
 	MapLoad()
 	MapStart()
 
@@ -38,7 +38,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("jump") and (global.level == global.firstLevel or (global.level == global.lastLevel  and clock > 0.5)):
 		global.level = posmod(global.level + 1, global.lastLevel + 1)
 		DoChange()
-	
+
 	MapChange(delta)
 
 func _input(event: InputEvent) -> void:
