@@ -31,6 +31,3 @@ func flip():
 	vel.x = -vel.x
 	NodeSprite.flip_h = !NodeSprite.flip_h
 	flip_clock = 0.0
-
-
-

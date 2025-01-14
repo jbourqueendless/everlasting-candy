@@ -93,7 +93,7 @@ shape = SubResource("2")
 stream = ExtResource("3")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "Idle"
 libraries = {
 "": SubResource("AnimationLibrary_xy4w5")
 }
+autoplay = "Idle"

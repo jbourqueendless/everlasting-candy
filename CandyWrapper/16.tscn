@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=4 uid="uid://c03i46ddgxddq"]
 
-[ext_resource type="TileSet" uid="uid://caem805hxljgn" path="res://TileMap/TileSet.tres" id="1_s3rb2"]
+[ext_resource type="TileSet" uid="uid://caem805hxljgn" path="res://CandyWrapper/TileSet.tres" id="1_s3rb2"]
 
 [node name="TileMapLayer" type="TileMapLayer"]
 use_parent_material = true

@@ -22,5 +22,7 @@ Licensed under The Unlicense; see [LICENSE](LICENSE) for more information.
 
 Original game by [Harmony Honey].
 
+[Border Basic](https://v3x3d.itch.io/border-basic) font by VEXED, used under Creative Commons Attribution v4.0 International license.
+
 [Candy Wrapper]: https://github.com/HarmonyHoney/CandyWrapper
 [Harmony Honey]: https://github.com/HarmonyHoney

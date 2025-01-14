@@ -19,7 +19,7 @@ var change := false
 
 func _ready():
 	global.Game = self
-	
+
 	if global.level == global.firstLevel or global.level == global.lastLevel:
 		NodeSprite.frame = 0 if global.level == global.firstLevel else 3
 		NodeSprite.visible = true
@@ -28,7 +28,7 @@ func _ready():
 		p.scale.x = -1 if randf() < 0.5 else 1
 		p.set_script(null)
 		add_child(p)
-	
+
 	MapLoad()
 	MapStart()
 
@@ -38,8 +38,13 @@ func _process(delta):
 	if Input.is_action_just_pressed("jump") and (global.level == global.firstLevel or (global.level == global.lastLevel  and clock > 0.5)):
 		global.level = posmod(global.level + 1, global.lastLevel + 1)
 		DoChange()
-	
+
 	MapChange(delta)
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):
+		global.stop_music()
+		get_tree().change_scene_to_file("res://Scene/WorldSelector.tscn")
 
 func MapLoad():
 	var tm = global.instantiate_level()
@@ -47,18 +52,14 @@ func MapLoad():
 	Map = tm
 
 func MapStart():
-	print("--- MapStart: Begin ---")
-	print("global.level: ", global.level)
 	for pos in Map.get_used_cells():
 		var id = Map.get_cell_source_id(pos)
 		match id:
 			TILE_WALL:
-				print(pos, ": Wall")
 				# Use random wall tile from 3×3 tileset to make levels look less repetitive
 				var atlas = Vector2(randi_range(0, 2), randi_range(0, 2))
 				Map.set_cell(pos, TILE_WALL, atlas)
 			TILE_PLAYER:
-				print(pos, ": Player")
 				# Add live player to the scene
 				var inst = ScenePlayer.instantiate()
 				inst.position = Map.map_to_local(pos) + Vector2(4, 0)
@@ -66,14 +67,12 @@ func MapStart():
 				# Remove static player tile from the tile map
 				Map.set_cell(pos, -1)
 			TILE_GOOBER:
-				print(pos, ": Goober")
 				# Add live goober to the scene
 				var inst = SceneGoober.instantiate()
 				inst.position = Map.map_to_local(pos) + Vector2(4, 1)
 				NodeGoobers.add_child(inst)
 				# Remove static goober tile from the tile map
 				Map.set_cell(pos, -1)
-	print("--- MapStart: End ---")
 
 func MapChange(delta):
 	# if its time to change scene
@@ -82,7 +81,7 @@ func MapChange(delta):
 		if delay < 0:
 			DoChange()
 		return # skip the rest if change == true
-	
+
 	# should i check?
 	if check:
 		check = false
