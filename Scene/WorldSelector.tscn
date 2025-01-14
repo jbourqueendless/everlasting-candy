@@ -1,46 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://h6eyk0hg1y1f"]
+[gd_scene load_steps=3 format=3 uid="uid://h6eyk0hg1y1f"]
 
-[ext_resource type="FontFile" uid="uid://d3xp4agbq2lok" path="res://Font/m3x6.ttf" id="1_pma82"]
+[ext_resource type="Theme" uid="uid://dqt6eyc0l8kms" path="res://Theme/WorldSelector.tres" id="1_h1u7b"]
 [ext_resource type="Script" path="res://Script/WorldSelector.gd" id="2_c1jjg"]
-[ext_resource type="FontFile" uid="uid://2q38bblqh3yd" path="res://Font/Border_Basic.ttf" id="3_odaha"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_peelc"]
-content_margin_bottom = 3.0
-bg_color = Color(0.454902, 0.192157, 0.00392157, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.996078, 0.615686, 0.0862745, 1)
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_50uqy"]
-content_margin_bottom = 3.0
-bg_color = Color(0.454902, 0.192157, 0.00392157, 1)
-anti_aliasing = false
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_poevj"]
-
-[sub_resource type="Theme" id="Theme_tlc0c"]
-default_font = ExtResource("1_pma82")
-Button/colors/font_color = Color(0.996078, 0.615686, 0.0862745, 1)
-Button/colors/font_focus_color = Color(1, 0.92549, 0.6, 1)
-Button/colors/font_hover_color = Color(1, 0.92549, 0.6, 1)
-Button/colors/font_hover_pressed_color = Color(1, 0.92549, 0.6, 1)
-Button/colors/font_pressed_color = Color(1, 0.92549, 0.6, 1)
-Button/styles/focus = SubResource("StyleBoxFlat_peelc")
-Button/styles/hover = SubResource("StyleBoxFlat_peelc")
-Button/styles/normal = SubResource("StyleBoxFlat_50uqy")
-CheckButton/colors/font_color = Color(0.454902, 0.192157, 0, 1)
-CheckButton/colors/font_focus_color = Color(0.996078, 0.615686, 0.0862745, 1)
-CheckButton/colors/font_hover_color = Color(0.996078, 0.615686, 0.0862745, 1)
-CheckButton/colors/font_hover_pressed_color = Color(0.996078, 0.615686, 0.0862745, 1)
-CheckButton/colors/font_pressed_color = Color(0.454902, 0.192157, 0, 1)
-HeaderLarge/constants/line_spacing = -14
-HeaderLarge/font_sizes/font_size = 16
-HeaderLarge/fonts/font = ExtResource("3_odaha")
-Label/colors/font_color = Color(0.996078, 0.615686, 0.0862745, 1)
-TabContainer/styles/panel = SubResource("StyleBoxEmpty_poevj")
 
 [node name="TitleScreen" type="VBoxContainer"]
 anchors_preset = 15
@@ -48,7 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_tlc0c")
+theme = ExtResource("1_h1u7b")
 script = ExtResource("2_c1jjg")
 
 [node name="Title" type="Label" parent="."]

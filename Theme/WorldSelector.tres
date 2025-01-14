@@ -1,0 +1,42 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://dqt6eyc0l8kms"]
+
+[ext_resource type="FontFile" uid="uid://2q38bblqh3yd" path="res://Font/Border_Basic.ttf" id="1_32alm"]
+[ext_resource type="FontFile" uid="uid://d3xp4agbq2lok" path="res://Font/m3x6.ttf" id="2_6rcqi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_peelc"]
+content_margin_bottom = 3.0
+bg_color = Color(0.454902, 0.192157, 0.00392157, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.996078, 0.615686, 0.0862745, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_50uqy"]
+content_margin_bottom = 3.0
+bg_color = Color(0.454902, 0.192157, 0.00392157, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_poevj"]
+
+[resource]
+default_font = ExtResource("2_6rcqi")
+Button/colors/font_color = Color(0.996078, 0.615686, 0.0862745, 1)
+Button/colors/font_focus_color = Color(1, 0.92549, 0.6, 1)
+Button/colors/font_hover_color = Color(1, 0.92549, 0.6, 1)
+Button/colors/font_hover_pressed_color = Color(1, 0.92549, 0.6, 1)
+Button/colors/font_pressed_color = Color(1, 0.92549, 0.6, 1)
+Button/styles/focus = SubResource("StyleBoxFlat_peelc")
+Button/styles/hover = SubResource("StyleBoxFlat_peelc")
+Button/styles/normal = SubResource("StyleBoxFlat_50uqy")
+CheckButton/colors/font_color = Color(0.454902, 0.192157, 0, 1)
+CheckButton/colors/font_focus_color = Color(0.996078, 0.615686, 0.0862745, 1)
+CheckButton/colors/font_hover_color = Color(0.996078, 0.615686, 0.0862745, 1)
+CheckButton/colors/font_hover_pressed_color = Color(0.996078, 0.615686, 0.0862745, 1)
+CheckButton/colors/font_pressed_color = Color(0.454902, 0.192157, 0, 1)
+HeaderLarge/constants/line_spacing = -14
+HeaderLarge/font_sizes/font_size = 16
+HeaderLarge/fonts/font = ExtResource("1_32alm")
+Label/colors/font_color = Color(0.996078, 0.615686, 0.0862745, 1)
+TabContainer/styles/panel = SubResource("StyleBoxEmpty_poevj")
