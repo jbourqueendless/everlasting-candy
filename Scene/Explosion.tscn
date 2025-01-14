@@ -50,7 +50,7 @@ stream = ExtResource("3")
 autoplay = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "Idle"
 libraries = {
 "": SubResource("AnimationLibrary_o3l4t")
 }
+autoplay = "Idle"
