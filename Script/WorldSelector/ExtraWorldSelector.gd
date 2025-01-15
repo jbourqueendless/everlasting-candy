@@ -5,6 +5,7 @@ signal back
 
 const WORLDS_DIR := "res://Worlds/"
 
+@onready var Scroll: ScrollContainer = %Scroll
 @onready var ExtraWorldsBox: VBoxContainer = %ExtraWorldsBox
 @onready var BackButton: Button = %BackButton
 
@@ -48,3 +49,4 @@ func _input(event: InputEvent) -> void:
 func _on_visibility_changed() -> void:
 	if self.visible and BackButton:
 		BackButton.grab_focus()
+		Scroll.scroll_vertical = 0
