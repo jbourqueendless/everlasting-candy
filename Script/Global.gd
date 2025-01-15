@@ -27,28 +27,40 @@ func _input(event):
 		DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE if win_full else DisplayServer.MOUSE_MODE_HIDDEN)
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED if win_full else DisplayServer.WINDOW_MODE_FULLSCREEN)
 
+## Lists scenes in the given resource directory, accounting for the fact that,
+## when exported, resource files are renamed, but must be loaded by their
+## original name.
+##
+## Returns the original basename of each scene in the given directory.
+##
+## TODO: in Godot 4.4, use ResourceLoader.list_directory()
+##  https://docs.godotengine.org/en/latest/classes/class_resourceloader.html#class-resourceloader-method-list-directory
+func _list_scenes(path: String) -> Array[String]:
+	var scenes: Array[String]
+	var dir := DirAccess.open(path)
+	
+	dir.list_dir_begin()
+	var file := dir.get_next()
+	while file:
+		if file.ends_with(".tscn.remap"):
+			scenes.append(file.left(-len(".remap")))
+		elif file.ends_with(".tscn"):
+			scenes.append(file)
+		file = dir.get_next()
+	dir.list_dir_end()
+
+	return scenes
+
 ## Load a series of numbered scenes from the given directory.
 ## Each must be a TileMapLayer node.
 func load_levels(tilemap_dir: String):
 	_levels.clear()
 
-	var levelrx := RegEx.new()
-	levelrx.compile("^(\\d+).tscn$")
+	var scenes := _list_scenes(tilemap_dir)
+	scenes.sort_custom(func (a: String, b: String): return a.naturalnocasecmp_to(b) < 0)
 
-	var level_paths: Array[String]
-	var dir := DirAccess.open(tilemap_dir)
-	dir.list_dir_begin()
-	var file := dir.get_next()
-	while file:
-		var rxmatch := levelrx.search(file)
-		if rxmatch:
-			level_paths.append(file)
-
-		file = dir.get_next()
-
-	level_paths.sort_custom(func (a: String, b: String): return a.naturalnocasecmp_to(b) < 0)
-	for path in level_paths:
-		var l := load(tilemap_dir.path_join(path)) as PackedScene
+	for name in scenes:
+		var l := load(tilemap_dir.path_join(name)) as PackedScene
 		_levels.append(l)
 
 	lastLevel = _levels.size() - 1
