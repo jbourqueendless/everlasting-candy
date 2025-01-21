@@ -19,7 +19,6 @@ func _ready():
 	audio = AudioStreamPlayer.new()
 	add_child(audio)
 	audio.stream = OST
-	audio.finished.connect(audio.play)
 
 func _input(event):
 	if event.is_action_pressed("ui_fullscreen"):
