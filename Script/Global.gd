@@ -58,8 +58,8 @@ func load_levels(tilemap_dir: String):
 	var scenes := _list_scenes(tilemap_dir)
 	scenes.sort_custom(func (a: String, b: String): return a.naturalnocasecmp_to(b) < 0)
 
-	for name in scenes:
-		var l := load(tilemap_dir.path_join(name)) as PackedScene
+	for scene_filename in scenes:
+		var l := load(tilemap_dir.path_join(scene_filename)) as PackedScene
 		_levels.append(l)
 
 	lastLevel = _levels.size() - 1
