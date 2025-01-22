@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3 uid="uid://pnnwgl5j385l"]
+
+[ext_resource type="Theme" uid="uid://dqt6eyc0l8kms" path="res://Theme/WorldSelector.tres" id="1_2q1s0"]
+[ext_resource type="Script" path="res://Script/WorldSelector/MainWorldSelector.gd" id="1_g8fqa"]
+
+[node name="MainWorldSelector" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g8fqa")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_2q1s0")
+
+[node name="Title" type="Label" parent="VBox"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+text = "Everlasting
+Candy"
+horizontal_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBox"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+
+[node name="MainWorldBox" type="VBoxContainer" parent="VBox/MarginContainer2"]
+layout_mode = 2
+alignment = 1
+
+[node name="CandyWrapperButton" type="Button" parent="VBox/MarginContainer2/MainWorldBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Play Candy Wrapper"
+
+[node name="ExtraWorldsButton" type="Button" parent="VBox/MarginContainer2/MainWorldBox"]
+layout_mode = 2
+text = "Extra Worlds"
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="VBox/MarginContainer2/MainWorldBox/CandyWrapperButton" to="." method="_on_candy_wrapper_button_pressed"]
+[connection signal="pressed" from="VBox/MarginContainer2/MainWorldBox/ExtraWorldsButton" to="." method="_on_extra_worlds_button_pressed"]
