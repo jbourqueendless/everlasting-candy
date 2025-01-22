@@ -1,7 +1,14 @@
+class_name Game
 extends Node2D
 
+signal win
+signal lose
+
+enum LevelType { NORMAL, TITLE, COMPLETE }
+@export var level_type := LevelType.NORMAL
+
 enum {TILE_WALL = 0, TILE_PLAYER = 1, TILE_GOOBER = 2}
-var Map: TileMapLayer
+@onready var Map: TileMapLayer = $Map
 
 var ScenePlayer = load("res://Scene/Player.tscn")
 var SceneGoober = load("res://Scene/Goober.tscn")
@@ -16,10 +23,11 @@ var clock := 0.0
 var delay := 1.5
 var check := false
 var change := false
+var died := false
 
 func _ready():
-	if global.level == global.firstLevel or global.level == global.lastLevel:
-		NodeSprite.frame = 0 if global.level == global.firstLevel else 3
+	if level_type != LevelType.NORMAL:
+		NodeSprite.frame = 0 if level_type == LevelType.TITLE else 3
 		NodeSprite.visible = true
 		var p = ScenePlayer.instantiate()
 		p.position = Vector2(72, 85)
@@ -27,27 +35,15 @@ func _ready():
 		p.set_script(null)
 		add_child(p)
 
-	MapLoad()
 	MapStart()
 
 func _process(delta):
 	clock += delta
-	# title screen is the first level, and "game complete" screen is the last level:
-	if Input.is_action_just_pressed("jump") and (global.level == global.firstLevel or (global.level == global.lastLevel  and clock > 0.5)):
-		global.level = posmod(global.level + 1, global.lastLevel + 1)
-		DoChange()
+
+	if Input.is_action_just_pressed("jump") and level_type != LevelType.NORMAL:
+		win.emit()
 
 	MapChange(delta)
-
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_cancel"):
-		global.stop_music()
-		get_tree().change_scene_to_file("res://Scene/WorldSelector.tscn")
-
-func MapLoad():
-	var tm = global.instantiate_level()
-	add_child(tm)
-	Map = tm
 
 func MapStart():
 	for pos in Map.get_used_cells():
@@ -95,18 +91,19 @@ func Lose():
 	NodeAudioLose.play()
 	NodeSprite.visible = true
 	NodeSprite.frame = 2
-	global.level = max(0, global.level - 1)
+	died = true
 
 func Win():
 	change = true
 	NodeAudioWin.play()
 	NodeSprite.visible = true
-	global.level = min(global.lastLevel, global.level + 1)
-	print("Level Complete!, change to level: ", global.level)
 
 func DoChange():
 	change = false
-	get_tree().reload_current_scene()
+	if died:
+		lose.emit()
+	else:
+		win.emit()
 
 func Explode(character: Node2D):
 	var xpl = SceneExplo.instantiate()
