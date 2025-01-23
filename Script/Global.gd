@@ -6,7 +6,6 @@ var _levels: Array[PackedScene]
 var level := 0
 const firstLevel := 0
 var lastLevel: int
-var Game
 
 var OST = load("res://Audio/OST.mp3")
 var audio

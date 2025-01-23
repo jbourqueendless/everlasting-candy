@@ -18,8 +18,6 @@ var check := false
 var change := false
 
 func _ready():
-	global.Game = self
-
 	if global.level == global.firstLevel or global.level == global.lastLevel:
 		NodeSprite.frame = 0 if global.level == global.firstLevel else 3
 		NodeSprite.visible = true
@@ -64,6 +62,8 @@ func MapStart():
 				var inst = ScenePlayer.instantiate()
 				inst.position = Map.map_to_local(pos) + Vector2(4, 0)
 				self.add_child(inst)
+				inst.died.connect(_on_died.bind(inst))
+				inst.stomped.connect(_on_stomped)
 				# Remove static player tile from the tile map
 				Map.set_cell(pos, -1)
 			TILE_GOOBER:
@@ -108,7 +108,16 @@ func DoChange():
 	change = false
 	get_tree().reload_current_scene()
 
-func Explode(arg : Vector2):
+func Explode(character: Node2D):
 	var xpl = SceneExplo.instantiate()
-	xpl.position = arg
+	xpl.position = character.position
 	add_child(xpl)
+	character.queue_free()
+
+func _on_died(player: CharacterBody2D):
+	Explode(player)
+	Lose()
+
+func _on_stomped(goober: CharacterBody2D):
+	Explode(goober)
+	check = true
