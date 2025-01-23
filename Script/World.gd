@@ -9,6 +9,13 @@ var _game_scene : PackedScene = preload("res://Scene/Game.tscn")
 var _game : Game
 @onready var _candy_spawner : CandySpawner = $CandySpawner
 
+@onready var NodeAudioWin := $Audio/Win
+@onready var NodeAudioLose := $Audio/Lose
+@onready var NodeOverlay := $Overlay
+
+## Time to wait after completing a level or dying before switching to the next/previous level
+const CHANGE_DELAY := 1.5
+
 ## Lists scenes in the given resource directory, accounting for the fact that,
 ## when exported, resource files are renamed, but must be loaded by their
 ## original name.
@@ -66,9 +73,15 @@ func _instantiate_level():
 	dummy_map.queue_free()
 
 	if level == firstLevel:
+		NodeOverlay.visible = true
+		NodeOverlay.frame = 0
 		_game.level_type = Game.LevelType.TITLE
 	elif level == lastLevel:
+		NodeOverlay.visible = true
+		NodeOverlay.frame = 3
 		_game.level_type = Game.LevelType.COMPLETE
+	else:
+		NodeOverlay.visible = false
 
 	_game.win.connect(_on_win)
 	_game.lose.connect(_on_lose)
@@ -81,11 +94,23 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		get_tree().change_scene_to_file("res://Scene/WorldSelector.tscn")
 
+func _process(_delta: float):
+	if Input.is_action_just_pressed("jump") and (level == firstLevel or level == lastLevel):
+		level = posmod(level + 1, levels.size())
+		_instantiate_level()
+
 func _on_win():
 	level = posmod(level + 1, levels.size())
+	NodeAudioWin.play()
+	NodeOverlay.visible = true
+	NodeOverlay.frame = 1
+	await get_tree().create_timer(CHANGE_DELAY).timeout
 	_instantiate_level()
-
 
 func _on_lose():
 	level = max(level - 1, firstLevel)
+	NodeAudioLose.play()
+	NodeOverlay.visible = true
+	NodeOverlay.frame = 2
+	await get_tree().create_timer(CHANGE_DELAY).timeout
 	_instantiate_level()
