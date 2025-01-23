@@ -9,10 +9,12 @@ extends Node2D
 @export_range(0.0, 1.0) var progress := 0.0:
 	set = _set_progress
 
+## The texture to use for the candy falling in the background.
+@export var candy_texture: Texture2D = preload("res://Image/Candy.png")
+
 var delay := 3.0
 var timer := 0.0
 
-var candy_tex = preload("res://Image/Candy.png")
 
 var active := []
 var idle := []
@@ -48,7 +50,7 @@ func _process(delta):
 			c = idle.pop_back()
 		else:
 			c = Sprite2D.new()
-			c.texture = candy_tex
+			c.texture = candy_texture
 			c.z_index = -1
 			add_child(c)
 		active.append(c)
