@@ -12,7 +12,9 @@ enum {TILE_WALL = 0, TILE_PLAYER = 1, TILE_GOOBER = 2}
 
 var ScenePlayer = load("res://Scene/Player.tscn")
 var SceneGoober = load("res://Scene/Goober.tscn")
-var SceneExplo = load("res://Scene/Explosion.tscn")
+
+## This scene is used when the player or a goober is destroyed.
+@export var explosion_scene := preload("res://Scene/Explosion.tscn")
 
 @onready var NodeGoobers := $Goobers
 
@@ -63,7 +65,7 @@ func _process(_delta: float):
 			win.emit()
 
 func Explode(character: Node2D):
-	var xpl = SceneExplo.instantiate()
+	var xpl = explosion_scene.instantiate()
 	xpl.position = character.position
 	add_child(xpl)
 	character.queue_free()
