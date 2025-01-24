@@ -80,6 +80,10 @@ The commits within your Pull Request should consist only of the addition of your
 
 When creating your Pull Request, please pay particular attention to the Pull Request title and description. When your contribution is accepted, all commits in your Pull Request will be squashed into a single commit, which will adopt the title and description from the Pull Request. Your Pull Request should have an imperative title such as "Add Flying Cow World", and the description should briefly explain the key features of your contribution and the reasons behind any key decisions. See [How to Write a Git Commit Message](https://cbea.ms/git-commit/) for more details on the basic linguistic and content standards to follow.
 
+If your change adds assets obtained from other sources, they must be appropriately licensed for free usage and redistribution. We prefer assets licensed under Creative Commons. Your Pull Request Description should note exactly where these assets came from, and you should add a `CREDITS.txt` file in the same directory providing appropriate [attribution](https://wiki.creativecommons.org/wiki/Recommended_practices_for_attribution) for each file e.g.:
+
+> background.png: "Flying Cows" by John Blake is licensed under CC BY 4.0
+
 Please also post a follow-up comment on your Pull Request with screenshots or a video showing your world in action. This is optional but recommended. Showcase your contribution!
 
 Your Pull Request may receive feedback from maintainers and peers. In order to respond to this feedback, you do not need to create a new branch or open a new Pull Request. Please continue working on the same branch, and the existing Pull Request will automatically update. You can either address feedback by creating followup commits (they will later be squashed), or by modifying and force-pushing the original commits.
