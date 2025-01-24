@@ -48,7 +48,7 @@ func MapStart():
 			TILE_GOOBER:
 				# Add live goober to the scene
 				var inst = SceneGoober.instantiate()
-				inst.position = Map.map_to_local(pos) + Vector2(4, 1)
+				inst.position = Map.map_to_local(pos) + Vector2(4, 0)
 				NodeGoobers.add_child(inst)
 				# Remove static goober tile from the tile map
 				Map.set_cell(pos, -1)
