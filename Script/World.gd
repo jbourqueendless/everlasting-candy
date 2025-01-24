@@ -42,7 +42,7 @@ func _list_scenes(path: String) -> Array[String]:
 ## Load a series of numbered scenes from the given directory.
 ## Each must be a TileMapLayer node.
 func _load_levels(level_directory: String):
-	var level_regexp := RegEx.create_from_string("^\\d+\\.tscn$")
+	var level_regexp := RegEx.create_from_string("^\\d+.*\\.tscn$")
 	var scenes := _list_scenes(level_directory).filter(func (filename: String): return level_regexp.search(filename))
 	scenes.sort_custom(func (a: String, b: String): return a.naturalnocasecmp_to(b) < 0)
 
