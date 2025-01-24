@@ -4,7 +4,7 @@ First, choose a name for your new world. This should be as descriptive and creat
 
 Copy the `Worlds/Sample` folder to `Worlds/Flying Cow Party`. You can do this from Godot's FileSystem view by right clicking on `Sample` and selecting `Duplicate`. Run the game: you should see “Flying Cow Party” in the world selection menu.
 
-Now, you can adapt the existing sample levels and add new ones within `Worlds/Flying Cow Party`. The levels will be sequenced through a case-insensitive, natural order sorting of their filenames. In other words, if you maintain the naming scheme of `1.tscn`, `2.tscn`, `3.tscn` and so on, the levels will play in this order.
+Now, you can adapt the existing sample levels and add new ones within `Worlds/Flying Cow Party`. Only the scene files that start with a number in the filename are considered levels, and a natural order sorting is applied to their filenames. In other words, if you maintain the naming scheme of `1.tscn`, `2.tscn`, `3.tscn` and so on, the levels will play in this order.
 
 Each level should be a numbered scene file, with the following node structure:
 
