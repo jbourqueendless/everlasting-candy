@@ -59,7 +59,7 @@ func _process(_delta: float):
 	# should i check?
 	if check:
 		check = false
-		var count = NodeGoobers.get_child_count()
+		var count = get_tree().get_node_count_in_group("goober")
 		print("Goobers: ", count)
 		if count == 0:
 			win.emit()
