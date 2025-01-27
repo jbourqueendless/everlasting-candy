@@ -21,13 +21,6 @@ var SceneGoober = load("res://Scene/Goober.tscn")
 var check := false
 
 func _ready():
-	if level_type != LevelType.NORMAL:
-		var p = ScenePlayer.instantiate()
-		p.position = Vector2(72, 85)
-		p.scale.x = -1 if randf() < 0.5 else 1
-		p.set_script(null)
-		add_child(p)
-
 	MapStart()
 
 	for player in get_tree().get_nodes_in_group("player"):
