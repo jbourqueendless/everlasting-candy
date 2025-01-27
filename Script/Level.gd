@@ -31,8 +31,8 @@ func _ready():
 	MapStart()
 
 	for player in get_tree().get_nodes_in_group("player"):
-		player.died.connect(_on_died.bind(player))
-		player.stomped.connect(_on_stomped)
+		player.connect(&"died", _on_died.bind(player))
+		player.connect(&"stomped", _on_stomped)
 
 func MapStart():
 	for pos in Map.get_used_cells():
