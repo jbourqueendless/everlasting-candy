@@ -30,6 +30,10 @@ func _ready():
 
 	MapStart()
 
+	for player in get_tree().get_nodes_in_group("player"):
+		player.died.connect(_on_died.bind(player))
+		player.stomped.connect(_on_stomped)
+
 func MapStart():
 	for pos in Map.get_used_cells():
 		var id = Map.get_cell_source_id(pos)
@@ -43,8 +47,6 @@ func MapStart():
 				var inst = ScenePlayer.instantiate()
 				inst.position = Map.map_to_local(pos) + Vector2(4, 0)
 				self.add_child(inst)
-				inst.died.connect(_on_died.bind(inst))
-				inst.stomped.connect(_on_stomped)
 				# Remove static player tile from the tile map
 				Map.set_cell(pos, -1)
 			TILE_GOOBER:
@@ -59,7 +61,7 @@ func _process(_delta: float):
 	# should i check?
 	if check:
 		check = false
-		var count = NodeGoobers.get_child_count()
+		var count = get_tree().get_node_count_in_group("goober")
 		print("Goobers: ", count)
 		if count == 0:
 			win.emit()
