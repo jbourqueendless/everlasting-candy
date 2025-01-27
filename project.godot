@@ -31,7 +31,7 @@ window/stretch/mode="canvas_items"
 
 [global_group]
 
-player=""
+player="The main character controlled by the player"
 goober="Enemies which must all be stomped"
 
 [importer_defaults]
