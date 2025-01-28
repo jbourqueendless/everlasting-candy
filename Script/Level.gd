@@ -21,18 +21,11 @@ var SceneGoober = load("res://Scene/Goober.tscn")
 var check := false
 
 func _ready():
-	if level_type != LevelType.NORMAL:
-		var p = ScenePlayer.instantiate()
-		p.position = Vector2(72, 85)
-		p.scale.x = -1 if randf() < 0.5 else 1
-		p.set_script(null)
-		add_child(p)
-
 	MapStart()
 
 	for player in get_tree().get_nodes_in_group("player"):
-		player.connect(&"died", _on_died.bind(player))
-		player.connect(&"stomped", _on_stomped)
+		player.died.connect(_on_died.bind(player))
+		player.stomped.connect(_on_stomped)
 
 func MapStart():
 	for pos in Map.get_used_cells():

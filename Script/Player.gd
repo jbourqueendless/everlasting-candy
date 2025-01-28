@@ -3,6 +3,11 @@ extends CharacterBody2D
 signal stomped(goober: CharacterBody2D)
 signal died
 
+## If false, the player cannot be moved and does not interact with its
+## environment: it just performs its idle animation, as needed for a title
+## or world-complete level.
+@export var interactive := true
+
 @onready var NodeSprite := $Sprite2D
 @onready var NodeArea2D := $Area2D
 @onready var NodeAudio := $Audio
@@ -18,6 +23,9 @@ var onFloor := false
 var jump := false
 
 func _physics_process(delta):
+	if not interactive:
+		return
+
 	# gravity
 	vel.y += grv * delta
 	vel.y = clamp(vel.y, -termVel, termVel)
