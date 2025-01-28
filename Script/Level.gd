@@ -27,6 +27,19 @@ func _ready():
 		player.died.connect(_on_died.bind(player))
 		player.stomped.connect(_on_stomped)
 
+	# When using a TileSetScenesCollectionSource to place scenes as cells of a
+	# TileMapLayer, adding these to the tree gets batched together with other
+	# TileMapLayer updates at the end of the frame. Monitor changes to the
+	# TileMapLayer's children and connect signals to any players found there.
+	Map.child_entered_tree.connect(_child_entered_tree_cb)
+
+
+func _child_entered_tree_cb(node: Node):
+	if node.is_in_group("player"):
+		node.died.connect(_on_died.bind(node))
+		node.stomped.connect(_on_stomped)
+
+
 func MapStart():
 	for pos in Map.get_used_cells():
 		var id = Map.get_cell_source_id(pos)
