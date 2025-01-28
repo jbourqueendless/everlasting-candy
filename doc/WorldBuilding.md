@@ -78,6 +78,16 @@ You will also need to apply your customised `TileSet.tres` to all other levels i
 
 3. Use the Inspector to customise the playback options or to use a different audio file.
 
+### Background
+
+1. Open your world's `World.tscn` file in the Editor's 2D view.
+
+2. Select the `Background` ColorRect node from the Scene Dock.
+
+3. Use the Inspector to customise the Color property under ColorRect.
+
+Note: the background would still look light yellow when editing each level or when playing each level scene in isolation, but it will look as expected when playing the game and selecting your world from the menu.
+
 ## Contributing your world
 
 Once your world is at a suitable point for initial contribution, please submit it to Everlasting Candy as a GitHub Pull Request.
