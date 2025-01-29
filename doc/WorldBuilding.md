@@ -10,7 +10,6 @@ Each level should be a numbered scene file, with the following node structure:
 
 - Level (Type: Level)
   - Map (Type: TilemapLayer)
-  - Goobers (Type: Node2D)
 
 The easiest way to create levels is by painting tiles. Select the Map node. The TileMap panel will open at the bottom. Each level should have the player tile in one cell, and one or more “goober” tiles. These tiles are scenes that become interactive when the level is played.
 
