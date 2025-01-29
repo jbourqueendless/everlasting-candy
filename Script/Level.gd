@@ -16,8 +16,6 @@ var SceneGoober = load("res://Scene/Goober.tscn")
 ## This scene is used when the player or a goober is destroyed.
 @export var explosion_scene := preload("res://Scene/Explosion.tscn")
 
-@onready var NodeGoobers := $Goobers
-
 var check := false
 
 func _ready():
@@ -59,7 +57,7 @@ func MapStart():
 				# Add live goober to the scene
 				var inst = SceneGoober.instantiate()
 				inst.position = Map.map_to_local(pos) + Vector2(4, 0)
-				NodeGoobers.add_child(inst)
+				self.add_child(inst)
 				# Remove static goober tile from the tile map
 				Map.set_cell(pos, -1)
 
