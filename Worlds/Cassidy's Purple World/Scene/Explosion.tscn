@@ -43,7 +43,7 @@ _data = {
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_mj6ao")
 hframes = 4
-frame = 3
+frame = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_u3wti")
